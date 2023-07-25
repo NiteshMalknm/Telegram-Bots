@@ -1,17 +1,17 @@
-from telethon.sync import TelegramClient,events
+from telethon.sync import events
+from Singleton import Singleton
+import spotify_helper
 
 
-api_id = 21830791
-api_hash = '041e0a1089a469a80ca4cc5d9c46196a'
-bot_token = '5918508248:AAHQeXJGa_UbhwqCHs7RH8jGniGIHCBeGAM'
+client = Singleton.gettelethonInstance()
 
 
-client = TelegramClient('app', api_id, api_hash)
-
-
-@client.on(events.NewMessage(outgoing=True, pattern=r'\/audio'))
+@client.on(events.NewMessage(outgoing=True, pattern=r'https\:\/\/open\.spotify\.com\/track'))
 async def handler(event):
-    print(event)
+    resp=spotify-helper.getTitleArtists(event.event.raw_text)
+    await event.reply(resp)
+    
+    
     
 with client:
     client.start()

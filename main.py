@@ -8,7 +8,7 @@ client = Singleton.gettelethonInstance()
 
 @client.on(events.NewMessage(outgoing=True, pattern=r'https\:\/\/open\.spotify\.com\/track'))
 async def handler(event):
-    resp=spotify_helper.getTitleArtists(event.event.raw_text)
+    resp=spotify_helper.getTitleArtists(event.raw_text)
     await event.reply(resp)
     
     

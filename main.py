@@ -1,8 +1,5 @@
 from telethon.sync import TelegramClient,events
-import os
 
-if os.path.isfile('app.session'):
-    os.remove("app.session")
 
 api_id = 21830791
 api_hash = '041e0a1089a469a80ca4cc5d9c46196a'

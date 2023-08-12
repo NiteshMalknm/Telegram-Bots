@@ -1,10 +1,12 @@
 from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
 from backports import configparser
+from yt_dlp import YoutubeDL
 class Singleton:
     
     spotipyObj=None
     Environment=None
+    ydlObj=None
     
     @staticmethod
     def getSpotipyInstance():
@@ -20,3 +22,19 @@ class Singleton:
             Singleton.Environment.read('application.properties')
             print("env obj is created")
         return Singleton.Environment
+        
+    @staticmethod
+    def getydlInstance():
+        if Singleton.ydlObj is None:
+            ydl_opts ={
+                'outtmpl': 'audio/%(playlist_title)s',
+                'format': 'bestaudio/best',
+                'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+                                  }],
+                        }
+            Singleton.ydlObj=YoutubeDL(ydl_opts) 
+            print("ydl obj is created")
+        return Singleton.ydlObj

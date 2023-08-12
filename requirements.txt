@@ -2,3 +2,4 @@ telethon
 spotipy
 configparser
 ffmpeg-python
+yt-dlp
